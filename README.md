@@ -4,6 +4,11 @@
 Esse projeto consiste em executar atividades rotineiras doi nosso dia a dia como excluir arquivos, transferir arquivos e etc...
 Caso ainda não tenha uma funcionalidade especifica, por favor contribua desenvolvendo uma nova feature.
 
+## ✅ Funcionalidades
+- Excluir todos os arquivos da pasta de download.
+- Excluir todas as pastas do download.
+- Abrir o spotify
+
 ## 🤔 FAQ
 
 #### O que preciso para rodar esse projeto?
