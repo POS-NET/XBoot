@@ -1,9 +1,11 @@
 ﻿using System.Diagnostics;
+using System.Runtime.InteropServices;
 
 namespace AssistenteVirtual
 {
     internal class Program
     {
+
         private static void Main(string[] args)
         {
             string nomeUsuario = Saudacao();
@@ -31,6 +33,7 @@ namespace AssistenteVirtual
             Console.WriteLine("\n1. Excluir todos os arquivos da pasta de download.");
             Console.WriteLine("\n2. Excluir todas as pastas da pasta de download.");
             Console.WriteLine("\n3. Abrir Spotify.");
+            Console.WriteLine("\n4. Gerar Senha.");
             string opcao = Console.ReadLine();
             Console.WriteLine();
 
@@ -48,6 +51,10 @@ namespace AssistenteVirtual
                     AbrirSpotify();
                     break;
 
+                case "4":
+                    GerarSenha(nomeUsuario);
+                    break;
+
                 default:
                     Console.WriteLine("Opção inválida.");
                     break;
@@ -56,7 +63,6 @@ namespace AssistenteVirtual
             Console.WriteLine("Qual é a próxima atividade que você quer executar?\n");
             Acoes(nomeUsuario);
         }
-
 
         private static void ExcluirTodosArquivosDownload()
         {
@@ -174,6 +180,47 @@ namespace AssistenteVirtual
                 Console.WriteLine($"Não foi possível abrir o Spotify: {ex.Message}");
             }
         }
+
+        public static void GerarSenha(string usuario)
+        {
+            const string lowercaseChars = "abcdefghijklmnopqrstuvwxyz";
+            const string uppercaseChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            const string numberChars = "0123456789";
+            const string symbolChars = "!@#$%^&*()_-+=<>?";
+
+            Console.Write("Por favor, digite a quantidade de caracteres: ");
+            int length = int.Parse(Console.ReadLine());
+
+            Console.Write("Você deseja usar letras maiúsculas? (S/N): ");
+            bool includeUppercase = Console.ReadLine().Trim().Equals("S", StringComparison.OrdinalIgnoreCase);
+
+            Console.Write("Você deseja usar números? (S/N): ");
+            bool includeNumbers = Console.ReadLine().Trim().Equals("S", StringComparison.OrdinalIgnoreCase);
+
+            Console.Write("Você deseja usar símbolos? (S/N): ");
+            bool includeSymbols = Console.ReadLine().Trim().Equals("S", StringComparison.OrdinalIgnoreCase);
+
+            string validChars = lowercaseChars;
+            if (includeUppercase)
+                validChars += uppercaseChars;
+            if (includeNumbers)
+                validChars += numberChars;
+            if (includeSymbols)
+                validChars += symbolChars;
+
+            Random random = new Random();
+            char[] password = new char[length];
+
+            for (int i = 0; i < length; i++)
+            {
+                password[i] = validChars[random.Next(validChars.Length)];
+            }
+
+            // Converta o array de caracteres em uma string antes de imprimir
+            string senhaGerada = new string(password);
+            Console.WriteLine($"\n{usuario} sua senha gerada foi: {senhaGerada}");
+        }
+
 
     }
 }
