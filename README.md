@@ -8,6 +8,7 @@ Caso ainda não tenha uma funcionalidade especifica, por favor contribua desenvo
 - Excluir todos os arquivos da pasta de download.
 - Excluir todas as pastas do download.
 - Abrir o spotify
+- Gerador de senhas
 
 ## 🤔 FAQ
 
